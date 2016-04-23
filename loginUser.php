@@ -8,13 +8,13 @@
 	$username = $_POST["username"];
 	$password = $_POST["password"];
 	$file = "users/" . $username. "/" . $username . ".user";
-	$fileLoggedOff = "users/" . $username. "/" . "off.log";
-	$fileLoggedOn = "users/" . $username. "/" . "on.log";
+	//$fileLoggedOff = "users/" . $username. "/" . "off.log";
+	//$fileLoggedOn = "users/" . $username. "/" . "on.log";
 	$progress = 0;
 	
-	if (!file_exists($fileLoggedOff)) {
+	/*if (!file_exists($fileLoggedOff)) {
 		die("User is not Logged Off!");
-	}
+	}*/
 	$fileContents = file_get_contents($file);
 	$fileContents = explode("_", $fileContents);
 	@$stringContents = [];
@@ -35,7 +35,11 @@
 	if($progress != 2){
 		die("Password or Username is Incorrect!");
 	}
-	rename($fileLoggedOff, $fileLoggedOn);
+	$tempFile = trim("users/" . $username . "/" . $httpClientIP . $httpXForwardedFor . $remoteAddress . ".log");
+	$tempFile = str_replace(":","-",$tempFile);
+	$temp = fopen($tempFile, "w");
+	fclose($temp);
+	//rename($fileLoggedOff, $fileLoggedOn);
 	
 	// might as well not overwrite the file if we didn't replace anything*/
 	echo("trueL");

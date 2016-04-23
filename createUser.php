@@ -8,12 +8,25 @@
 	$email = $_POST["email"];
 	$username = $_POST["username"];
 	$password = $_POST["password"];
+	$passwordConfirm = $_POST["passwordConfirm"];
 	$passwordHash = password_hash($password, PASSWORD_DEFAULT, array("cost" => 14));
 	$httpClientIPHash = password_hash($httpClientIP, PASSWORD_DEFAULT, array("cost" => 14));
 	$httpXForwardedForHash = password_hash($httpXForwardedFor, PASSWORD_DEFAULT, array("cost" => 14));
 	$remoteAddressHash = password_hash($remoteAddress, PASSWORD_DEFAULT, array("cost" => 14));
 	
+	if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+		die("Invalid Email Address!");
+	}
+	if(strlen($username) < 3){
+		die("Invalid Username! Usernames Must be at Least 3 Characters Long.");
+	}
+	if(strlen($password) < 5){
+		die("Invalid Password! Passwords Must be at Least 5 Characters Long.");
+	}
 	
+	if(strcmp($password, $passwordConfirm) != 0){
+		die("Passwords Don't Match");
+	}
 	if (!file_exists("users/" . $username. "/")) {
 		mkdir("users/" . $username. "/", 0777, true);
 	}else{
@@ -21,11 +34,11 @@
 	}
 	
 	$file = "users/" . $username. "/" . $username . ".user";
-	$fileLogginIn = "users/" . $username. "/" . "off.log";
+	//$fileLogginIn = "users/" . $username. "/" . "off.log";
 	
 	$writing = @fopen($file, "x") or die("Error. Try Again!");
-	$temp = @fopen($fileLogginIn, "x");
-	fclose($temp);
+	//$temp = @fopen($fileLogginIn, "x");
+	//fclose($temp);
 	if($writing){
 		fputs($writing, 
 			//"httpClientIP=" . $httpClientIPHash . "_httpXForwardedFor=" . $httpXForwardedForHash . "_remoteAddress=" . $remoteAddressHash . "_" .
