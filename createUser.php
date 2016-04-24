@@ -34,6 +34,7 @@
 	}
 	
 	$file = "users/" . $username. "/" . $username . ".user";
+	$fileData = "users/" . $username. "/" . $username . ".data";
 	//$fileLogginIn = "users/" . $username. "/" . "off.log";
 	
 	$writing = @fopen($file, "x") or die("Error. Try Again!");

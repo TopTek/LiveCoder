@@ -8,7 +8,9 @@ $(document).ready(function () {
 	$(this).remove();
 	});
 	});*/
-
+	
+	session = {};
+	session.data = {};
 	//Initialization processes
 	$("#registerContainer").hide();
 	//End of Initialization processes
@@ -40,7 +42,7 @@ $(document).ready(function () {
 					//test if the user was successfully logged in
 					if (!("trueL".localeCompare(dataL))) {
 						console.log("success");
-						$("#registerSubmitButton").css("pointer-events", "auto");
+						
 						//if user not logged in correctly, empty form inputs and output error message
 					}else{
 						document.getElementById("registerEmail").value = "";
