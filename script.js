@@ -42,7 +42,21 @@ $(document).ready(function () {
 					//test if the user was successfully logged in
 					if (!("trueL".localeCompare(dataL))) {
 						console.log("success");
-						
+						$("#registerSubmitButton").css("pointer-events", "auto");
+						$("#login").animate({
+							width: "toggle",
+							paddingRight: "toggle",
+							paddingLeft: "toggle",
+							opacity: "toggle",
+							boarderRadius: "toggle"
+						})
+						$("#register").animate({
+							width: "toggle",
+							paddingRight: "toggle",
+							paddingLeft: "toggle",
+								opacity: "toggle",
+								boarderRadius: "toggle"
+							})
 						//if user not logged in correctly, empty form inputs and output error message
 					}else{
 						document.getElementById("registerEmail").value = "";
