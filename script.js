@@ -17,6 +17,24 @@ $(document).ready(function () {
 	$("#register").click(function () {
 		$("#registerContainer").show();
 	});
+	
+	$("#test").click(function(){
+		
+		/*$("#register").animate({
+			width: "0px",
+			padding: "0px",
+			opacity: "0.0"
+			}, 'slow', 'linear', function() {
+		$(this).remove();
+		});
+		$("#login").animate({
+			width: "0px",
+			padding: "0px",
+			opacity: "0.0"
+			}, 'slow', 'linear', function() {
+		$(this).remove();
+		});*/
+	});
 
 	//Function executed when submitting a register form
 	$("#registerSubmitButton").click(function () {
@@ -41,6 +59,20 @@ $(document).ready(function () {
 					if (!("trueL".localeCompare(dataL))) {
 						console.log("success");
 						$("#registerSubmitButton").css("pointer-events", "auto");
+						$("#login").animate({
+							width: "toggle",
+							paddingRight: "toggle",
+							paddingLeft: "toggle",
+							opacity: "toggle",
+							boarderRadius: "toggle"
+						})
+						$("#register").animate({
+							width: "toggle",
+							paddingRight: "toggle",
+							paddingLeft: "toggle",
+								opacity: "toggle",
+								boarderRadius: "toggle"
+							})
 						//if user not logged in correctly, empty form inputs and output error message
 					}else{
 						document.getElementById("registerEmail").value = "";
