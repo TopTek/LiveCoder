@@ -8,11 +8,14 @@ $(document).ready(function () {
 	$(this).remove();
 	});
 	});*/
-	
+
 	session = {};
 	session.data = {};
+	session.user = "";
 	//Initialization processes
 	$("#registerContainer").hide();
+	$("#logout").hide();
+	$("#logoutText").hide();
 	//End of Initialization processes
 
 	//Function executed when clicking on "Sign up" to register a new account
@@ -22,7 +25,7 @@ $(document).ready(function () {
 
 	//Function executed when submitting a register form
 	$("#registerSubmitButton").click(function () {
-		$("#registerSubmitButton").css("pointer-events", "none");
+		$("*").css("pointer-events", "none");
 		$("*").remove(".error");
 		//submit to createUser.php
 		$.post("createUser.php", {
@@ -31,50 +34,51 @@ $(document).ready(function () {
 			password : document.getElementById("registerPassword").value,
 			passwordConfirm : document.getElementById("registerPasswordConfirm").value
 		}, function (dataR) {
-			console.log(dataR);
 			//test if the user was successfully created
 			if (!("trueR".localeCompare(dataR))) {
 				$.post("loginUser.php", {
 					username : document.getElementById("registerUsername").value,
 					password : document.getElementById("registerPassword").value
 				}, function (dataL) {
-					console.log(dataL);
 					//test if the user was successfully logged in
 					if (!("trueL".localeCompare(dataL))) {
-						console.log("success");
-						$("#registerSubmitButton").css("pointer-events", "auto");
-						$("#login").animate({
-							width: "toggle",
-							paddingRight: "toggle",
-							paddingLeft: "toggle",
-							opacity: "toggle",
-							boarderRadius: "toggle"
-						})
+						$("#registerContainer").hide();
+						document.getElementById("registerEmail").value = "";
+						document.getElementById("registerUsername").value = "";
+						document.getElementById("registerPassword").value = "";
+						document.getElementById("registerPasswordConfirm").value = "";
+						$("#log").removeClass("in");
+						$("#log").addClass("out");
+						$("*").css("pointer-events", "auto");
+						$("#loginText").fadeOut(function(){
+							$("#logoutText").fadeIn();
+						});
 						$("#register").animate({
-							width: "toggle",
-							paddingRight: "toggle",
-							paddingLeft: "toggle",
-								opacity: "toggle",
-								boarderRadius: "toggle"
-							})
+							width : "toggle",
+							paddingRight : "toggle",
+							paddingLeft : "toggle",
+							opacity : "toggle",
+							boarderRadius : "toggle"
+						});
+						
 						//if user not logged in correctly, empty form inputs and output error message
-					}else{
+					} else {
 						document.getElementById("registerEmail").value = "";
 						document.getElementById("registerUsername").value = "";
 						document.getElementById("registerPassword").value = "";
 						document.getElementById("registerPasswordConfirm").value = "";
 						$("#registerErrorBox").append("<p class='error'>" + dataL + "<p>")
-						$("#registerSubmitButton").css("pointer-events", "auto");
+						$("*").css("pointer-events", "auto");
 					}
 				})
 				//if user not created correctly, empty forum inputs and output error message
-			}else{
+			} else {
 				document.getElementById("registerEmail").value = "";
 				document.getElementById("registerUsername").value = "";
 				document.getElementById("registerPassword").value = "";
 				document.getElementById("registerPasswordConfirm").value = "";
 				$("#registerErrorBox").append("<p class='error'>" + dataR + "<p>")
-				$("#registerSubmitButton").css("pointer-events", "auto");
+				$("*").css("pointer-events", "auto");
 			}
 		})
 	});
