@@ -33,11 +33,11 @@
 		die("User Already Exists!");
 	}
 	
-	$file = "users/" . $username. "/" . $username . ".user";
-	$fileData = "users/" . $username. "/" . $username . ".data";
-	//$fileLogginIn = "users/" . $username. "/" . "off.log";
+	$file = "users/" . $email. "/" . $email . ".user";
+	$fileData = "users/" . $email. "/" . $email . ".data";
+	//$fileLogginIn = "users/" . $email. "/" . "off.log";
 	
-	$writing = @fopen($file, "x") or die("Error. Try Again!");
+	$writing = @fopen($file, "x") or die("Error. Try Again! createUser");
 	//$temp = @fopen($fileLogginIn, "x");
 	//fclose($temp);
 	if($writing){

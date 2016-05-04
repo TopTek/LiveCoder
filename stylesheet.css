@@ -5,6 +5,39 @@
 	position: fixed;
 }
 
+.bar{
+	border:2px solid #fafafa;
+	border-radius: 2px;
+	margin: 3px 5px 9px 5px;  
+	transition: opacity .5s ease-in-out, transform 0.5s ease-in-out;
+	transform-origin: left;
+}
+
+.fade{
+	opacity: 0;
+}
+
+.rotateUp45{
+    transform: rotate(-45deg);
+}
+
+.rotateDown45{
+    transform: rotate(45deg);
+}
+
+#menuBox{
+	width: 38px;
+	height: 38px;
+	margin: 6px;
+	float: right;
+	border: 1px solid #00bbff;
+	border-radius: 4px;
+}
+
+#menuBox:hover{
+	border-color: #49cfff; 
+}
+
 .block{
 	height: 50px;
 	width: 100%;
@@ -15,8 +48,13 @@
 	height: 25px;
 }
 
+.blockQuarter{
+	width: 100%;
+	height: 12.5px;
+}
+
 .error{
-	color: #C50000;
+	color: #a50000;
 	font-family: sans-serif;
 	font-size: 22px;
 	padding: 6px;
@@ -98,7 +136,22 @@
 	width: 300px;
 }
 
-.inputRegister{
+#loginContainer{
+	left: calc(50% - 150px);
+	position: relative;
+	width: 300px;
+}
+
+#logoutContainer{
+	left: calc(50% - 150px);
+	position: relative;
+	width: 300px;
+	text-align: center;
+	color: #fafafa;
+	font-size: 24px;
+}
+
+.input{
 	width: 100%;
 	height: 38px;
 	padding: 7px 4px 7px 4px;
@@ -119,6 +172,23 @@
 
 .submitButton:hover{
 	background-color: #49cfff;
+	border-color: #49cfff;
+}
+
+.submitButton2{
+	width: 100%;
+	height: 38px;
+	text-align: center;
+	background-color: #fafafa;
+	border: 1px solid #00bbff;
+	padding: 6px 4px 6px 4px;
+	font-size: 22px;
+	font-family: sans-serif;
+	color: #00bbff;
+}
+
+.submitButton2:hover{
+	color: #49cfff;
 	border-color: #49cfff;
 }
 

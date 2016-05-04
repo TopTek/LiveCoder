@@ -8,6 +8,11 @@
 </head>
 <body style="background-color: grey;">
 	<div id="banner">
+		<div id="menuBox">
+			<div class="bar" id="barTop"></div>
+			<div class="bar" id="barMiddle"></div>
+			<div class="bar" id="barBottom"></div>
+		</div>
 		<div id="regLogContainer" style="float: right;">
 			<div id="register">Sign up</div>
 			<div id="log" class="in">
@@ -19,20 +24,43 @@
 		<!--<div id="test">Test</div>-->
 	</div>
 	<div class="block"></div>
+	<!-- The content for all of the "Sign up" part of the register process is below this -->
 	<div id="registerContainer">
 		<div class="block"></div>
 		<form accept-charset="UTF-8" action="#" autocomplete="off">
-			<input type="text" class="inputRegister" placeholder="Email" id="registerEmail">
-			<input type="text" class="inputRegister" placeholder="Username" id="registerUsername">
-			<input type="password" class="inputRegister" placeholder="Password" id="registerPassword">
-			<input type="password" class="inputRegister" placeholder="Confirm" id="registerPasswordConfirm">
+			<input type="text" class="input" placeholder="Email" id="registerEmail">
+			<input type="text" class="input" placeholder="Username" id="registerUsername">
+			<input type="password" class="input" placeholder="Password" id="registerPassword">
+			<input type="password" class="input" placeholder="Confirm" id="registerPasswordConfirm">
 		</form>
 		<div class="blockHalf"></div>
 		<div class="submitButton" id="registerSubmitButton">Sign Up</div>
 		<div class="block" id="registerErrorBox"></div>
 	</div>
-	<div id="footer">
+	<!-- The content for all of the "Log in" part of the register process is below this -->
+	<div id="loginContainer">
+		<div class="block"></div>
+		<form accept-charset="UTF-8" action="#" autocomplete="off">
+			<input type="text" class="input" placeholder="Email" id="loginEmail">
+			<input type="password" class="input" placeholder="Password" id="loginPassword">
+		</form>
+		<div class="blockHalf"></div>
+		<div class="submitButton" id="loginSubmitButton">Log in</div>
+		<div class="block" id="loginErrorBox"></div>
+	</div>
 	
+	<div id="logoutContainer">
+		<div class="block"></div>
+		<div>Would you like to save?</div>
+		<div class="blockHalf"></div>
+		<div class="submitButton2" id="loginSubmitButton">Yes</div>
+		<div class="blockQuarter"></div>
+		<div class="submitButton" id="loginSubmitButton">No</div>
+		<div class="block" id="loginErrorBox"></div>
+	</div>
+	
+	<div id="footer">
+		
 	</div>
 </body>
 </html>	

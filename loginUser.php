@@ -5,11 +5,11 @@
 	$httpXForwardedFor = (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : "NR";
 	$remoteAddress = (!empty($_SERVER['REMOTE_ADDR'])) ? $_SERVER['REMOTE_ADDR'] : "NR";
 	$date = getdate()["mon"] . "/" . getdate()["mday"] . "/" . getdate()["year"] . "-" . getdate()["hours"] . ":" . getdate()["minutes"] . ":" . getdate()["seconds"];
-	$username = $_POST["username"];
+	$email = $_POST["email"];
 	$password = $_POST["password"];
-	$file = "users/" . $username. "/" . $username . ".user";
-	//$fileLoggedOff = "users/" . $username. "/" . "off.log";
-	//$fileLoggedOn = "users/" . $username. "/" . "on.log";
+	$file = "users/" . $email. "/" . $email . ".user";
+	//$fileLoggedOff = "users/" . $email. "/" . "off.log";
+	//$fileLoggedOn = "users/" . $email. "/" . "on.log";
 	$progress = 0;
 	
 	/*if (!file_exists($fileLoggedOff)) {
@@ -35,7 +35,7 @@
 	if($progress != 2){
 		die("Password or Username is Incorrect!");
 	}
-	$tempFile = trim("users/" . $username . "/" . $httpClientIP . $httpXForwardedFor . $remoteAddress . ".log");
+	$tempFile = trim("users/" . $email . "/" . $httpClientIP . $httpXForwardedFor . $remoteAddress . ".log");
 	$tempFile = str_replace(":","-",$tempFile);
 	$temp = fopen($tempFile, "w");
 	fclose($temp);
