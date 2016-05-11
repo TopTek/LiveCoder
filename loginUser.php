@@ -21,8 +21,8 @@
 	
 	for($i = 0; $i < count($fileContents); $i++){
 		$stringContents[] = explode("=", $fileContents[$i]);
-		if(strcmp($stringContents[$i][0], "username") == 0){
-			if(strcmp($stringContents[$i][1], $username) == 0){
+		if(strcmp($stringContents[$i][0], "email") == 0){
+			if(strcmp($stringContents[$i][1], $email) == 0){
 				$progress++;
 			}
 		}

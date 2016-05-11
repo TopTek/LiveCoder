@@ -27,8 +27,8 @@
 	if(strcmp($password, $passwordConfirm) != 0){
 		die("Passwords Don't Match");
 	}
-	if (!file_exists("users/" . $username. "/")) {
-		mkdir("users/" . $username. "/", 0777, true);
+	if (!file_exists("users/" . $email . "/")) {
+		mkdir("users/" . $email . "/", 0777, true);
 	}else{
 		die("User Already Exists!");
 	}
@@ -38,12 +38,13 @@
 	//$fileLogginIn = "users/" . $email. "/" . "off.log";
 	
 	$writing = @fopen($file, "x") or die("Error. Try Again! createUser");
+	fclose(fopen("main.data", "w+"));
 	//$temp = @fopen($fileLogginIn, "x");
 	//fclose($temp);
 	if($writing){
 		fputs($writing, 
 			//"httpClientIP=" . $httpClientIPHash . "_httpXForwardedFor=" . $httpXForwardedForHash . "_remoteAddress=" . $remoteAddressHash . "_" .
-			"email=" . $email ."_username=" . $username . "_password=" . $passwordHash
+			"email=" . $email ."_username=" . $username . "_password=" . $passwordHash . "_data={}"
 		);
 	}
 	fclose($writing);

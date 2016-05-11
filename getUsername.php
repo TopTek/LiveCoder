@@ -22,7 +22,7 @@
 	
 	for($i = 0; $i < count($fileContents); $i++){
 		$stringContents[] = explode("=", $fileContents[$i]);
-		if(strcmp($stringContents[$i][0], "data") == 0){
+		if(strcmp($stringContents[$i][0], "username") == 0){
 			$dataString = $stringContents[$i][1];
 		}
 	}
