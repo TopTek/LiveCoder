@@ -27,6 +27,20 @@ $(document).ready(function () {
 	session = {};
 	session.data = {};
 	session.user = "";
+	session.email = "";
+	
+	function project(name){
+		this.name = name;
+		this.dateCreated = new Date().getTime();
+		this.dateLastEdited = new Datea().getTime();
+		this.files = {};
+	}
+	
+	function file(name, language){
+		this.name = name;
+		this.language = language;
+		this.data = {};
+	}
 	//Initialization processes
 	resetViewport();
 	screen.page = "home";
@@ -35,6 +49,7 @@ $(document).ready(function () {
 	$("#menu").absoluteRight();
 	$("#menu").hide();
 	$("#usernameSpace").hide();
+	$("#newProjectContainer").hide();
 	//End of Initialization processes
 	
 	// Function which resents elements on risize
@@ -90,10 +105,34 @@ $(document).ready(function () {
 	function handleKeyUp(e){
 		keyNumb = e.keyCode;
 	}
+	
+	//creates a new project
+	function createProject(projectName){
+		resetViewport();
+		
+	}
+	
+	function openProject(projectName){
+		
+	}
+	
+	//create a new project when the submit button is clicked
+	$("#newProjectSubmitButton").click(function(){
+		resetNewProject();
+		createProject(document.getElementById("newProjectName"));
+	})
+	
+	//create a new project on click of the "New Project" button under the menu
+	$("#createNewProject").click(function(){
+		screen.page = "newProject";
+		resetViewport();
+		$("#newProjectContainer").show();
+	});
 
 	//Function executed when clicking on "Sign up" to register a new account
 	$("#register").click(function () {
 		resetViewport();
+		resetNewProject();
 		screen.page = "register";
 		$("#registerContainer").show();
 	});
@@ -111,42 +150,53 @@ $(document).ready(function () {
 	});
 	
 	function resetViewport(){
+		hideMenu();
+		$("#newProjectContainer").hide();
 		$("#registerContainer").hide();
 		resetRegister();
 		$("#loginContainer").hide();
 		$("#logoutContainer").hide();
 	}
 	
-	$("#menuBox").click(function(){
-		$("#menu").slideToggle();
+	//Function executed when clicking on the menuBox.
+	$("#menuBox").toggle(function(){
+		showMenu();
+	}, function(){
+		hideMenu();
 	});
+	
+	//Shows the menu and animates the divs which make up the button
+	function showMenu(){
+		$("#menu").stop(true,true).slideDown();
+		$("#barTop").stop().addClass("rotateDown45").animate({marginRight: "-6px"});
+		$("#barMiddle").stop().addClass("fade");
+		$("#barBottom").stop().addClass("rotateUp45").animate({marginRight: "-6px"});
+	}
+	
+	//Hides the menu and animates the divs which make up the button
+	function hideMenu(){
+		$("#menu").stop(true,true).slideUp();
+		$("#barTop").stop().removeClass("rotateDown45").animate({marginRight: "5px"});
+		$("#barMiddle").stop().removeClass("fade");
+		$("#barBottom").stop().removeClass("rotateUp45").animate({marginRight: "5px"});
+	}
 	
 	//after someone logs in, loads the data atributed to the email.
 	function loadSession(Email){
 		$.post("loadUserData.php", {
 			email: Email
 		}, function(data){
-			console.log(data);
-			/*
-			session.user = Username;
-			$("#usernameSpace").text(Username);
-			$("#usernameSpace").fadeIn();
-			session.user = document.getElementById("registerUsername").value;
-			*/
+			JSON.parse(data.responseText);
 		})
 	}
 	
-	function getUsername(Email){
+	function loadUsername(Email){
 		$.post("getUsername.php", {
 			email: Email
 		}, function(data){
-			console.log(data);
-			/*
-			session.user = Username;
-			$("#usernameSpace").text(Username);
+			session.user = data;
+			$("#usernameSpace").text(data);
 			$("#usernameSpace").fadeIn();
-			session.user = document.getElementById("registerUsername").value;
-			*/
 		})
 	}
 	
@@ -174,6 +224,8 @@ $(document).ready(function () {
 					opacity : "toggle",
 					boarderRadius : "toggle"
 				});
+				session.email = Email;
+				loadUsername(Email);
 				loadSession(Email);
 				//if user not logged in correctly, empty form inputs and output error message
 			} else {
@@ -186,6 +238,12 @@ $(document).ready(function () {
 	$("#loginSubmitButton").click(function(){
 		login();
 	});
+	
+	function resetNewProject(){
+		document.getElementById("newProjectName").value = "";
+		$("*").remove(".error");
+		$("*").css("pointer-events", "auto");
+	}
 	
 	function resetLogin(){
 		document.getElementById("loginEmail").value = "";
@@ -267,6 +325,8 @@ $(document).ready(function () {
 							opacity : "toggle",
 							boarderRadius : "toggle"
 						});
+						session.email = Email;
+						loadUsername(Email);
 						loadSession(Email);
 						//if user not logged in correctly, empty form inputs and output error message
 					} else {
@@ -294,15 +354,4 @@ $(document).ready(function () {
 			
 		})
 	}
-	
-	//Function executed when clicking on the menuBox.
-	$("#menuBox").toggle(function(){
-		$("#barTop").toggleClass("rotateDown45").animate({marginRight: "-6px"});
-		$("#barMiddle").toggleClass("fade");
-		$("#barBottom").toggleClass("rotateUp45").animate({marginRight: "-6px"});
-	}, function(){
-		$("#barTop").toggleClass("rotateDown45").animate({marginRight: "5px"});
-		$("#barMiddle").toggleClass("fade");
-		$("#barBottom").toggleClass("rotateUp45").animate({marginRight: "5px"});
-	});
 });
