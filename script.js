@@ -28,6 +28,7 @@ $(document).ready(function () {
 	session.data = {};
 	session.user = "";
 	session.email = "";
+	session.hasLoggedIn = false;
 	
 	function project(name){
 		this.name = name;
@@ -50,6 +51,7 @@ $(document).ready(function () {
 	$("#menu").hide();
 	$("#usernameSpace").hide();
 	$("#newProjectContainer").hide();
+	$("#projectContainer").hide();
 	//End of Initialization processes
 	
 	// Function which resents elements on risize
@@ -109,7 +111,9 @@ $(document).ready(function () {
 	//creates a new project
 	function createProject(projectName){
 		resetViewport();
-		
+		$("#projectContainer").show();
+		screen.page = "project";
+		$("#projectName").text(projectName);
 	}
 	
 	function openProject(projectName){
@@ -118,15 +122,16 @@ $(document).ready(function () {
 	
 	//create a new project when the submit button is clicked
 	$("#newProjectSubmitButton").click(function(){
+		createProject(document.getElementById("newProjectName").value);
 		resetNewProject();
-		createProject(document.getElementById("newProjectName"));
 	})
 	
 	//create a new project on click of the "New Project" button under the menu
 	$("#createNewProject").click(function(){
-		screen.page = "newProject";
+		screen.page = "project";
 		resetViewport();
 		$("#newProjectContainer").show();
+		$("#newProjectName").focus();
 	});
 
 	//Function executed when clicking on "Sign up" to register a new account
@@ -135,6 +140,7 @@ $(document).ready(function () {
 		resetNewProject();
 		screen.page = "register";
 		$("#registerContainer").show();
+		$("#registerEmail").focus();
 	});
 	
 	$("#log").click(function(){
@@ -142,6 +148,7 @@ $(document).ready(function () {
 			resetViewport();
 			screen.page = "login";
 			$("#loginContainer").show();
+			$("#loginEmail").focus();
 		}else{
 			resetViewport();
 			screen.page = "logout";
@@ -225,6 +232,7 @@ $(document).ready(function () {
 					boarderRadius : "toggle"
 				});
 				session.email = Email;
+				session.hasLoggedIn = true;
 				loadUsername(Email);
 				loadSession(Email);
 				//if user not logged in correctly, empty form inputs and output error message
@@ -326,6 +334,7 @@ $(document).ready(function () {
 							boarderRadius : "toggle"
 						});
 						session.email = Email;
+						session.hasLoggedIn = true;
 						loadUsername(Email);
 						loadSession(Email);
 						//if user not logged in correctly, empty form inputs and output error message

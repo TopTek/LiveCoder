@@ -190,6 +190,16 @@
 	font-size: 24px;
 }
 
+#projectViewport{
+	width: 100%;
+	height: calc(100% - 120px);
+}
+
+#projectNavigator{
+	height: 100%;
+	width: 200px;
+}
+
 .projectToolbar{
 	height: 20px;
 	background-color: #999999;
@@ -198,6 +208,17 @@
 .projectSetting{
 	height: 18px;
 	float: left;
+	margin: 1px 6px 1px 6px;
+	text-align: left;
+	font-family: sans-serif;
+	font-size: 16px;
+	color: #fafafa;
+	white-space: nowrap;
+}
+
+#projectName{
+	height: 18px;
+	float: right;
 	margin: 1px 6px 1px 6px;
 	text-align: left;
 	font-family: sans-serif;
