@@ -33,7 +33,7 @@ $(document).ready(function () {
 	function project(name){
 		this.name = name;
 		this.dateCreated = new Date().getTime();
-		this.dateLastEdited = new Datea().getTime();
+		this.dateLastEdited = new Date().getTime();
 		this.files = {};
 	}
 	
