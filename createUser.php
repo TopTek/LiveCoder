@@ -48,7 +48,6 @@
 		);
 	}
 	fclose($writing);
-	// might as well not overwrite the file if we didn't replace anything*/
 	echo("trueR");
 	exit();
 ?>
