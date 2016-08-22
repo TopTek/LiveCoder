@@ -37,7 +37,7 @@
 	$fileData = "users/" . $email. "/" . $email . ".data";
 	//$fileLogginIn = "users/" . $email. "/" . "off.log";
 	
-	$writing = @fopen($file, "x") or die("Error. Try Again! createUser");
+	$writing = @fopen($file, "x") or die("Error. Try Again!");
 	fclose(fopen("main.data", "w+"));
 	//$temp = @fopen($fileLogginIn, "x");
 	//fclose($temp);
