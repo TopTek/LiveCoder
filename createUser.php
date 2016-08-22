@@ -9,6 +9,9 @@
 	$username = $_POST["username"];
 	$password = $_POST["password"];
 	$passwordConfirm = $_POST["passwordConfirm"];
+	if(strcmp($password, $passwordConfirm) != 0){
+		die("Your password and confirmation password do not match.")
+	}
 	$passwordHash = password_hash($password, PASSWORD_DEFAULT, array("cost" => 14));
 	//$httpClientIPHash = password_hash($httpClientIP, PASSWORD_DEFAULT, array("cost" => 14));
 	//$httpXForwardedForHash = password_hash($httpXForwardedFor, PASSWORD_DEFAULT, array("cost" => 14));
